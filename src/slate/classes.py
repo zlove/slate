@@ -22,7 +22,8 @@ try:
     from pdfminer.pdfparser import PDFPage
 except ImportError:
     from pdfminer.pdfpage import PDFPage
-import utils
+
+from .utils import normalise_whitespace
 
 __all__ = ['PDF']
 
@@ -98,6 +99,6 @@ class PDF(list):
             Removes misc cruft, like lots of whitespace.
         """
         if clean:
-            return utils.normalise_whitespace(''.join(self).replace('\n', ' '))
+            return normalise_whitespace(''.join(self).replace('\n', ' '))
         else:
             return ''.join(self)
